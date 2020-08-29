@@ -56,3 +56,22 @@ int main()
 	}
 	return(0);
 }
+
+
+/*
+****************OUTPUT*****************
+Please enter the number of variables in the equations: 3
+Matrix representation for given set of equations is:
+  1 3 2   x1 = 2.000000
+  2 7 7   x2 = -1.000000
+  2 5 2   x3 = 7.000000
+
+The solution is:
+
+ x1=3.000000
+
+ x2=1.000000
+
+ x3=-2.000000
+ **************************************
+ */
