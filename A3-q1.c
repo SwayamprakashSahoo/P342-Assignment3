@@ -3,58 +3,66 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void GaussJordan(float mat[][20], int var);
 
 int main()
 {
 	printf("Please enter the number of variables in the equations: ");
-	int n;
-	scanf("%d", &n);
+	int var;
+	scanf("%d", &var);
 	float mat[20][20];
 	FILE* temp1 = fopen("Set1.txt", "r");
 	if (temp1 == NULL)
 		exit(1);
 
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < var; i++)
 	{
-		for (int j = 0; j < n + 1; j++)
+		for (int j = 0; j < var + 1; j++)
 		{
 			fscanf(temp1, "%f ", &mat[i][j]);
 		}
 	}
 
 	printf("Matrix representation for given set of equations is:\n ");
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < var; i++)
 	{
-		for (int j = 0; j < n; j++)
+		for (int j = 0; j < var; j++)
 		{
-			printf(" %d",(int) (mat[i][j]));
+			printf(" %d", (int)(mat[i][j]));
 		}
 		printf("   x%d", i + 1);
-		printf(" = %f", mat[i][n]);
+		printf(" = %f", mat[i][var]);
 		printf("\n ");
 	}
+
+	GaussJordan(mat, var);
+	return(0);
+}
+
+void GaussJordan(float mat[20][20], int var)
+{
 	float c, x[20];
-	for (int j = 0; j < n; j++)
+	for (int j = 0; j < var; j++)
 	{
-		for ( int i = 0; i < n; i++)
+		for (int i = 0; i < var; i++)
 		{
 			if (i != j)
 			{
 				c = mat[i][j] / mat[j][j];
-				for (int k = 0; k < n + 1; k++)
+				for (int k = 0; k < var + 1; k++)
 				{
 					mat[i][k] = mat[i][k] - c * mat[j][k];
 				}
 			}
 		}
 	}
+	
 	printf("\nThe solution is:\n");
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < var; i++)
 	{
-		x[i] = mat[i][n] / mat[i][i];
-		printf("\n x%d=%f\n", i+1, x[i]);
+		x[i] = mat[i][var] / mat[i][i];
+		printf("\n x%d=%f\n", i + 1, x[i]);
 	}
-	return(0);
 }
 
 
