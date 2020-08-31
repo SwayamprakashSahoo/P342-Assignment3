@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void pivot(float mat[][20], int var);
 void GaussJordan(float mat[][20], int var);
 
 int main()
@@ -39,8 +40,36 @@ int main()
 	return(0);
 }
 
-void GaussJordan(float mat[20][20], int var)
+void pivot(float mat[][20], int var)
 {
+	for (int i = 0; i < var - 1; i++)
+	{
+		if (mat[i][i] == 0)
+		{
+			for (int j = i + 1; j < var; j++)
+			{
+				if (abs(mat[j][i]) > mat[i][i])
+				{
+					for (int k = i; k < var + 1; k++)
+					{
+						float temp = mat[i][k];
+						mat[i][k] = mat[j][k];
+						mat[j][k] = temp;
+						continue;
+					}
+				}
+			}
+		}
+	}
+}
+
+void GaussJordan(float mat[][20], int var)
+{
+	for (int i = 0; i < var; i++)
+	{
+		pivot(mat, var);
+	}
+
 	float c, x[20];
 	for (int j = 0; j < var; j++)
 	{
@@ -56,7 +85,7 @@ void GaussJordan(float mat[20][20], int var)
 			}
 		}
 	}
-	
+
 	printf("\nThe solution is:\n");
 	for (int i = 0; i < var; i++)
 	{
