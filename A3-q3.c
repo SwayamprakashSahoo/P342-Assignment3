@@ -160,3 +160,31 @@ void Matrix_mult(float mat[][20], float inv[][20], int var)
 		printf("\n");
 	}
 }
+
+
+
+
+
+/*
+****************OUTPUT**********************
+The matrix A is:
+1   -3   7
+-1   4   -7
+-1   3   -6
+The augmented matrix yields:
+ 1 -3 7   |   1 0 0
+ -1 4 -7   |   0 1 0
+ -1 3 -6   |   0 0 1
+
+The inverse of matrix A is:
+-3   3   -7
+1   1   0
+1   0   1
+
+The product of matrix A and its inverse is:
+1 0 0
+0 1 0
+0 0 1
+
+*********************************************
+*/
